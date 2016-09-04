@@ -1,4 +1,4 @@
-animate
+Animate
 ==============
 The animate library is a configurable and extendable way to create animations for RGB pixels. [TODO - flesh out descriptions]
 
