@@ -1,7 +1,7 @@
 #ifndef BITMAP_H
 #define BITMAP_H
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "constants.h"
 #include "blendingmode.h"
 

@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include "stdlib.h"
+#include <stdlib.h>
 #include "constants.h"
 #include "keyframe.h"
 #include "transform.h"

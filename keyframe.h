@@ -1,7 +1,6 @@
 #ifndef KEYFRAME_H
 #define KEYFRAME_H
 
-#include <stdarg.h>
 #include "constants.h"
 #include "bitmap.h"
 #include "transform.h"

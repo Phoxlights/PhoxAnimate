@@ -1,7 +1,7 @@
 #ifndef BLENDING_MODE_H
 #define BLENDING_MODE_H
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "constants.h"
 
 typedef enum BlendingMode {
