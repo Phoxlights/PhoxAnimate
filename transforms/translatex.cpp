@@ -23,7 +23,7 @@ void tickTransformTranslateX(void * t, Bitmap * bitmap, int domain[2]){
     // get the numbers from the magic number box
     float range[] = {(float)transform->begin, (float)transform->end};
     float domain_float[] = {(float)domain[0], (float)domain[1]};
-    int offset = floor(linear(domain_float, range));
+    int offset = floor(ease(domain_float, range, transform->ease));
 
     byte rgba[4];
     int new_x;

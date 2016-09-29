@@ -20,9 +20,9 @@ void tickTransformRGB(void * t, Bitmap * bitmap, int domain[2]){
 
     float domain_float[] = {(float)domain[0], (float)domain[1]};
 
-    float r = linear(domain_float, rangeR);
-    float g = linear(domain_float, rangeG);
-    float b = linear(domain_float, rangeB);
+    float r = ease(domain_float, rangeR, transform->ease);
+    float g = ease(domain_float, rangeG, transform->ease);
+    float b = ease(domain_float, rangeB, transform->ease);
 
     for(int i = 0; i < num_pixels; i++){
         int offset = i * STRIDE;

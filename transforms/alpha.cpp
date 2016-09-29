@@ -16,7 +16,7 @@ void tickTransformAlpha(void * t, Bitmap * bitmap, int domain[2]){
     int num_pixels = bitmap->width * bitmap->height;
     float range[] = {transform->begin, transform->end};
     float domain_float[] = {(float)domain[0], (float)domain[1]};
-    float multi = linear(domain_float, range);
+    float multi = ease(domain_float, range, transform->ease);
 
     for(int i = 0; i < num_pixels; i++){
         int offset = i * STRIDE;

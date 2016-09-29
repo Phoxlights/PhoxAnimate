@@ -1,55 +1,55 @@
 #include "ease.h"
 #include "easing.h"
 
-static float doMath(float domain[2], float range[2], AHEasingFunction easeFn){
+float ease(float domain[2], float range[2], EaseFunction ease){
+    AHEasingFunction fn;
+    switch(ease){
+        case EASE_IN:
+            fn = QuadraticEaseIn;
+            break;
+        case EASE_OUT:
+            fn = QuadraticEaseOut;
+            break;
+        case EASE_IN_OUT:
+            fn = QuadraticEaseInOut;
+            break;
+        case EASE_IN_BACK:
+            fn = BackEaseIn;
+            break;
+        case EASE_OUT_BACK:
+            fn = BackEaseOut;
+            break;
+        case EASE_IN_OUT_BACK:
+            fn = BackEaseInOut;
+            break;
+        case EASE_IN_ELASTIC:
+            fn = ElasticEaseIn;
+            break;
+        case EASE_OUT_ELASTIC:
+            fn = ElasticEaseOut;
+            break;
+        case EASE_IN_OUT_ELASTIC:
+            fn = ElasticEaseInOut;
+            break;
+        case EASE_IN_BOUNCE:
+            fn = BounceEaseIn;
+            break;
+        case EASE_OUT_BOUNCE:
+            fn = BounceEaseOut;
+            break;
+        case EASE_IN_OUT_BOUNCE:
+            fn = BounceEaseInOut;
+            break;
+        case LINEAR:
+        default:
+            fn = LinearInterpolation;
+            break;
+    }
+
     float t = (float)domain[0];
     float d = (float)domain[1];
     float b = (float)range[0];
     float c = (float)range[1] - range[0];
-    float p = easeFn(t/d);
+    float p = fn(t/d);
     return c * p + b;
-}
-
-float linear(float domain[2], float range[2]){
-    return doMath(domain, range, LinearInterpolation);
-}
-
-float easeOut(float domain[2], float range[2]){
-    return doMath(domain, range, QuadraticEaseOut);
-}
-float easeIn(float domain[2], float range[2]){
-    return doMath(domain, range, QuadraticEaseIn);
-}
-float easeInOut(float domain[2], float range[2]){
-    return doMath(domain, range, QuadraticEaseInOut);
-}
-
-float easeOutBack(float domain[2], float range[2]){
-    return doMath(domain, range, BackEaseOut);
-}
-float easeInBack(float domain[2], float range[2]){
-    return doMath(domain, range, BackEaseIn);
-}
-float easeInOutBack(float domain[2], float range[2]){
-    return doMath(domain, range, BackEaseInOut);
-}
-
-float easeOutElastic(float domain[2], float range[2]){
-    return doMath(domain, range, ElasticEaseOut);
-}
-float easeInElastic(float domain[2], float range[2]){
-    return doMath(domain, range, ElasticEaseIn);
-}
-float easeInOutElastic(float domain[2], float range[2]){
-    return doMath(domain, range, ElasticEaseInOut);
-}
-
-float easeOutBounce(float domain[2], float range[2]){
-    return doMath(domain, range, BounceEaseOut);
-}
-float easeInBounce(float domain[2], float range[2]){
-    return doMath(domain, range, BounceEaseIn);
-}
-float easeInOutBounce(float domain[2], float range[2]){
-    return doMath(domain, range, BounceEaseInOut);
 }

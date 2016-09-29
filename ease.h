@@ -1,28 +1,22 @@
 #ifndef EASE_H
 #define EASE_H
 
-// TODO - more easing functions
 typedef enum EaseFunction {
     LINEAR,
-    EASE_OUT
+    EASE_IN,
+    EASE_OUT,
+    EASE_IN_OUT,
+    EASE_IN_BACK,
+    EASE_OUT_BACK,
+    EASE_IN_OUT_BACK,
+    EASE_IN_ELASTIC,
+    EASE_OUT_ELASTIC,
+    EASE_IN_OUT_ELASTIC,
+    EASE_IN_BOUNCE,
+    EASE_OUT_BOUNCE,
+    EASE_IN_OUT_BOUNCE,
 } EaseFunction;
 
-float linear(float domain[2], float range[2]);
-
-float easeIn(float domain[2], float range[2]);
-float easeOut(float domain[2], float range[2]);
-float easeInOut(float domain[2], float range[2]);
-
-float easeInBack(float domain[2], float range[2]);
-float easeOutBack(float domain[2], float range[2]);
-float easeInOutBack(float domain[2], float range[2]);
-
-float easeInElastic(float domain[2], float range[2]);
-float easeOutElastic(float domain[2], float range[2]);
-float easeInOutElastic(float domain[2], float range[2]);
-
-float easeInBounce(float domain[2], float range[2]);
-float easeOutBounce(float domain[2], float range[2]);
-float easeInOutBounce(float domain[2], float range[2]);
+float ease(float domain[2], float range[2], EaseFunction ease);
 
 #endif
