@@ -55,3 +55,7 @@ and the c file:
         // TODO - do some work with args, default values, etc
         return createTransform((void*)transform, tickTransformDefault, freeTransformDefault);
     }
+
+Real good codes
+---------------
+Easing functions from https://github.com/warrenm/AHEasing
