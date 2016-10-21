@@ -1,5 +1,7 @@
 #include "constants.h"
 #include "bitmap.h"
+#include <ease.h>
+#include <math.h>
 
 void Bitmap_fill(Bitmap * target, byte rgba[4]);
 
@@ -70,6 +72,46 @@ void Bitmap_fill(Bitmap * target, byte rgba[4]){
         target->data[offset+1] = rgba[1];
         target->data[offset+2] = rgba[2];
         target->data[offset+3] = rgba[3];
+    }
+}
+
+// TODO - rotation (for 2D)
+// TODO - probably doesnt work at all in 2D
+void Bitmap_gradient(Bitmap * target, GradientStop * stops[MAX_STOPS], int numStops){
+    int numPx = target->width * target->height;
+    int pxPerStop = ceil(numPx / (numStops-1));
+
+    for(int j = 0; j < numStops-1; j++){
+        GradientStop * stopA = stops[j];
+        GradientStop * stopB = stops[j+1];
+        int offsetStart = j * pxPerStop;
+        float domain[2] = {0.0, (float)pxPerStop};
+        float rangeR[2] = {(float)stopA->r, (float)stopB->r};
+        float rangeG[2] = {(float)stopA->g, (float)stopB->g};
+        float rangeB[2] = {(float)stopA->b, (float)stopB->b};
+        float rangeA[2] = {(float)stopA->a, (float)stopB->a};
+
+        for(int i = 0; i <= pxPerStop-1; i++){
+            int offset = (i + offsetStart) * STRIDE;
+            domain[0] = (float)i;
+            target->data[offset] = ease(domain, rangeR, LINEAR);
+            target->data[offset+1] = ease(domain, rangeG, LINEAR);
+            target->data[offset+2] = ease(domain, rangeB, LINEAR);
+            target->data[offset+3] = ease(domain, rangeA, LINEAR);
+        }
+
+    }
+
+    // smudge last pixel(s) if needed, like a boss?
+    // NOTE - assumes just one pixel leftover! any more
+    // than one and we need a better smudgin' strategy
+    if(numPx % pxPerStop){
+        int offset = (numPx-1) * STRIDE;
+        GradientStop * lastStop = stops[numStops-1];
+        target->data[offset] = lastStop->r;
+        target->data[offset+1] = lastStop->g;
+        target->data[offset+2] = lastStop->b;
+        target->data[offset+3] = lastStop->a;
     }
 }
 

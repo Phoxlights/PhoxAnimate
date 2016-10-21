@@ -55,9 +55,9 @@ void freeTransformTranslateX(void * t){
     free(transform);
 }
 
-Transform createTransformTranslateX(int begin, int end, bool wrap){
+Transform createTransformTranslateX(int begin, int end, bool wrap, EaseFunction ease){
     TransformConfig * transform = (TransformConfig*)malloc(sizeof(TransformConfig));
-    transform->ease = LINEAR;
+    transform->ease = ease;
     transform->begin = begin;
     transform->end = end;
     transform->wrap = wrap;

@@ -3,6 +3,6 @@
 
 #include "transform.h"
 
-Transform createTransformMirrorX();
+Transform createTransformMirrorX(bool clone);
 
 #endif
